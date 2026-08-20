@@ -247,12 +247,12 @@ main {
 }
 
 .wall {
-  columns: 4 260px;
-  column-gap: 28px;
+  columns: 5 190px;
+  column-gap: 20px;
 }
 @media (max-width: 640px) {
   .wall {
-    columns: 1 260px;
+    columns: 2 150px;
   }
 }
 
@@ -285,6 +285,8 @@ main {
 }
 .polaroid img {
   width: 100%;
+  max-height: 240px;
+  object-fit: cover;
   display: block;
   background: var(--linen);
 }

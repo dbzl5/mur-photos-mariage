@@ -11,10 +11,74 @@
 }
 
 header {
+  position: relative;
+  z-index: 2;
   text-align: center;
   padding: 64px 20px 40px;
 }
 
+header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(232, 201, 233, 0.75);
+  z-index: -1;
+}
+
+header > * {
+  position: relative;
+  z-index: 1;
+}
+body {
+  margin: 0;
+  background: #e8c9e9;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Illustration uniquement dans la partie haute */
+body::before {
+  content: '';
+  position: absolute;
+
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 1200px;
+  height:311px;
+
+  background: url('/images/mariage.png') top center / contain no-repeat;
+
+  opacity: 1;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  width: 45%;
+  height: 420px;
+
+  background: url('/images/fleurs.png') top right / contain no-repeat;
+
+  opacity: 1;
+  filter: saturate(2) brightness(0.75) contrast(1.2);
+  pointer-events: none;
+  
+  z-index: 0;
+}
+
+#app {
+  position: relative;
+  z-index: 1;
+}
 .eyebrow {
   font-size: 12px;
   letter-spacing: 0.28em;

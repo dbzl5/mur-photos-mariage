@@ -1,0 +1,23 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top left, rgba(139, 120, 93, 0.08), transparent 55%),
+    radial-gradient(ellipse at bottom right, rgba(107, 39, 55, 0.06), transparent 50%),
+    hsl(292, 43%, 86%);
+  background-attachment: fixed;
+  color: #2b231d;
+  font-family: 'Jost', sans-serif;
+  min-height: 100vh;
+}
+
+button:focus-visible,
+.dropzone:focus-visible,
+input:focus-visible {
+  outline: 3px solid #63036e;
+  outline-offset: 2px;
+}

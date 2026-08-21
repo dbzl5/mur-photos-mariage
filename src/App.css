@@ -124,12 +124,12 @@ h1 .amp {
 .date-line::before,
 .date-line::after {
   content: '✦';
-  color: var(--gold);
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(58, 46, 74, 0.3), 0 0 6px rgba(122, 75, 150, 0.35);
   font-size: 10px;
   margin: 0 12px;
   vertical-align: middle;
 }
-
 .subtitle {
   margin-top: 22px;
   font-size: 16px;

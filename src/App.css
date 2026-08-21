@@ -1,13 +1,51 @@
 :root {
-  --cream: #fbf5fd;
-  --linen: #fffeff;
-  --wine: #4d0659;
-  --wine-dark: #56026f;
-  --sage: #56026f;
-  --ink: #2b231d;
-  --ink-soft: #56026f;
-  --tape: #e8d9b8;
-  --gold: #ffff;
+  --cream: #fbf7fd;
+  --linen: #f3e9f7;
+  --wine: #7a4b96;
+  --wine-dark: #5a3570;
+  --sage: #8fa377;
+  --ink: #3a2e4a;
+  --ink-soft: #6e5c82;
+  --tape: #dce8d0;
+  --gold: #a8729a;
+}
+
+body {
+  margin: 0;
+  background: var(--linen);
+  color: var(--ink);
+  font-family: 'Jost', sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Illustration uniquement dans la partie haute */
+body::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: clamp(150px, 40vw, 300px);
+  height: clamp(150px, 40vw, 300px);
+  background: url('/images/fleurs.png') top right / contain no-repeat;
+  opacity: 1;
+  filter: saturate(2) brightness(0.75) contrast(1.2);
+  pointer-events: none;
+  z-index: 0;
+}
+
+@media (max-width: 640px) {
+  body::after {
+    width: 55vw;
+    height: 55vw;
+  }
+}
+
+/* Vite monte l'app dans <div id="root"> — pas "#app" */
+#root {
+  position: relative;
+  z-index: 1;
 }
 
 header {
@@ -17,68 +55,39 @@ header {
   padding: 64px 20px 40px;
 }
 
+/* Illustration + voile fusionnés : toujours cadrés exactement sur le header,
+   quelle que soit la taille de l'écran (fini le débordement sur mobile) */
 header::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(232, 201, 233, 0.75);
+  background:
+    linear-gradient(rgba(243, 233, 247, 0.88), rgba(243, 233, 247, 0.88)),
+    url('/images/mariage.png');
+  background-size: auto, clamp(280px, 55vw, 640px) auto;
+  background-position: center, top center;
+  background-repeat: no-repeat, no-repeat;
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 0%, black 55%, transparent 100%);
   z-index: -1;
+}
+
+@media (max-width: 640px) {
+  header {
+    padding: 40px 16px 32px;
+  }
+  header::before {
+    background-size: auto, 92vw auto;
+    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 42%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 0%, black 42%, transparent 100%);
+  }
 }
 
 header > * {
   position: relative;
   z-index: 1;
 }
-body {
-  margin: 0;
-  background: #e8c9e9;
-  overflow-x: hidden;
-  position: relative;
-}
 
-/* Illustration uniquement dans la partie haute */
-body::before {
-  content: '';
-  position: absolute;
-
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-
-  width: 100%;
-  max-width: 1200px;
-  height:311px;
-
-  background: url('/images/mariage.png') top center / contain no-repeat;
-
-  opacity: 1;
-  pointer-events: none;
-  z-index: 0;
-}
-
-body::after {
-  content: '';
-  position: absolute;
-
-  top: 0;
-  right: 0;
-
-  width: 45%;
-  height: 420px;
-
-  background: url('/images/fleurs.png') top right / contain no-repeat;
-
-  opacity: 1;
-  filter: saturate(2) brightness(0.75) contrast(1.2);
-  pointer-events: none;
-  
-  z-index: 0;
-}
-
-#app {
-  position: relative;
-  z-index: 1;
-}
 .eyebrow {
   font-size: 12px;
   letter-spacing: 0.28em;
@@ -92,14 +101,15 @@ h1 {
   font-family: 'Playfair Display', serif;
   font-weight: 600;
   font-size: clamp(38px, 7vw, 64px);
-  color: var(--wine-dark);
   line-height: 1.05;
+  color: var(--wine-dark);
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5), 0 0 26px rgba(168, 114, 154, 0.3);
 }
 
 h1 .amp {
   font-style: italic;
   font-weight: 500;
-  color: var(--gold);
+  color: var(--sage);
   padding: 0 10px;
 }
 
@@ -129,6 +139,8 @@ h1 .amp {
 }
 
 main {
+  position: relative;
+  z-index: 1;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 24px;
@@ -136,12 +148,12 @@ main {
 
 .upload-card {
   background: var(--cream);
-  border: 1px solid rgba(107, 39, 55, 0.12);
+  border: 1px solid rgba(122, 75, 150, 0.14);
   border-radius: 10px;
   padding: 32px;
   max-width: 640px;
   margin: 0 auto 56px;
-  box-shadow: 0 18px 40px -20px rgba(43, 35, 29, 0.25);
+  box-shadow: 0 18px 40px -20px rgba(58, 46, 74, 0.25);
 }
 
 .upload-card h2 {
@@ -176,7 +188,7 @@ main {
 .field input[type='text'] {
   width: 100%;
   padding: 11px 13px;
-  border: 1px solid rgba(43, 35, 29, 0.18);
+  border: 1px solid rgba(58, 46, 74, 0.2);
   border-radius: 6px;
   background: #fff;
   font-family: 'Jost', sans-serif;
@@ -189,7 +201,7 @@ main {
 }
 
 .dropzone {
-  border: 2px dashed rgba(107, 39, 55, 0.3);
+  border: 2px dashed rgba(122, 75, 150, 0.32);
   border-radius: 8px;
   padding: 28px 16px;
   text-align: center;
@@ -246,14 +258,14 @@ main {
   color: #fff;
   width: 100%;
   margin-top: 16px;
-  box-shadow: 0 8px 18px -8px rgba(107, 39, 55, 0.6);
+  box-shadow: 0 8px 18px -8px rgba(122, 75, 150, 0.55);
 }
 .btn-primary:hover:not(:disabled) {
   background: var(--wine-dark);
 }
 .btn-ghost {
   background: transparent;
-  border: 1px solid rgba(43, 35, 29, 0.25);
+  border: 1px solid rgba(58, 46, 74, 0.25);
   color: var(--ink-soft);
   font-size: 13px;
   padding: 9px 16px;
@@ -278,7 +290,7 @@ main {
   flex-wrap: wrap;
   gap: 12px;
   margin-bottom: 28px;
-  border-bottom: 1px solid rgba(43, 35, 29, 0.12);
+  border-bottom: 1px solid rgba(58, 46, 74, 0.14);
   padding-bottom: 14px;
 }
 .gallery-header h2 {
@@ -325,14 +337,14 @@ main {
   margin-bottom: 32px;
   background: #fff;
   padding: 14px 14px 20px;
-  box-shadow: 0 10px 24px -12px rgba(43, 35, 29, 0.35);
+  box-shadow: 0 10px 24px -12px rgba(58, 46, 74, 0.35);
   position: relative;
   cursor: pointer;
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 .polaroid:hover {
   transform: translateY(-4px) rotate(0deg) !important;
-  box-shadow: 0 18px 34px -14px rgba(43, 35, 29, 0.45);
+  box-shadow: 0 18px 34px -14px rgba(58, 46, 74, 0.45);
   z-index: 5;
 }
 .polaroid::before {
@@ -374,7 +386,7 @@ main {
 .lightbox {
   position: fixed;
   inset: 0;
-  background: rgba(20, 15, 12, 0.92);
+  background: rgba(20, 15, 26, 0.92);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -395,7 +407,7 @@ main {
   gap: 16px;
 }
 .lightbox-meta {
-  color: #efe4d0;
+  color: var(--linen);
   text-align: center;
   font-size: 13.5px;
 }
@@ -419,7 +431,7 @@ main {
   right: 26px;
   background: none;
   border: none;
-  color: #efe4d0;
+  color: var(--linen);
   font-size: 30px;
   cursor: pointer;
   line-height: 1;
@@ -431,6 +443,8 @@ main {
 }
 
 footer {
+  position: relative;
+  z-index: 1;
   text-align: center;
   padding: 50px 20px 40px;
   font-size: 12.5px;

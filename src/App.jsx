@@ -129,7 +129,7 @@ export default function App() {
 
       <div
         className={`toast${toast.show ? ' show' : ''}`}
-        style={{ background: toast.err ? '#6B2737' : '#2B231D' }}
+        style={{ background: toast.err ? '#7A4B96' : '#3A2E4A' }}
       >
         {toast.text}
       </div>
